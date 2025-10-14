@@ -1060,6 +1060,7 @@ def makePlotWithRatioToRef(
     extra_text=None,
     extra_text_loc=(0.8, 0.7),
     yerr=False,
+    yerr_ratio=False,
     legtext_size=20,
     plot_title=None,
     x_ticks_ndp=None,
@@ -1233,7 +1234,7 @@ def makePlotWithRatioToRef(
             legtext_size=legtext_size,
             lower_leg_padding=lower_leg_padding,
             alpha=alpha,
-            yerr=False,
+            yerr=yerr_ratio,
             fill_between=fill_between,
             dataIdx=dataIdx,
             baseline=baseline,
@@ -1252,7 +1253,7 @@ def makePlotWithRatioToRef(
                 legtext_size=legtext_size,
                 lower_leg_padding=lower_leg_padding,
                 alpha=alpha,
-                yerr=False,
+                yerr=yerr_ratio,
                 fill_between=fill_between,
                 dataIdx=(
                     midratio_idxs.index(dataIdx) if dataIdx in midratio_idxs else None
