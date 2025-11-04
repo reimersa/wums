@@ -1039,6 +1039,7 @@ def makePlotWithRatioToRef(
     labels,
     colors=None,
     hists_ratio=None,
+    override_hists_ratio=False,
     midratio_idxs=None,
     linestyles=[],
     xlabel="",
@@ -1105,17 +1106,20 @@ def makePlotWithRatioToRef(
         raise ValueError(
             f"Number of hists ({len(hists_ratio)}) and labels ({len(labels)}) must agree!"
         )
-    ratio_hists = [
-        hh.divideHists(
-            h,
-            hists[dataIdx if ratio_to_data else 0],
-            cutoff=cutoff,
-            flow=False,
-            rel_unc=True,
-            by_ax_name=False,
-        )
-        for h in hists_ratio[not baseline :]
-    ]
+    if override_hists_ratio:
+        ratio_hists = hists_ratio
+    else:
+        ratio_hists = [
+            hh.divideHists(
+                h,
+                hists[dataIdx if ratio_to_data else 0],
+                cutoff=cutoff,
+                flow=False,
+                rel_unc=True,
+                by_ax_name=False,
+            )
+            for h in hists_ratio[not baseline :]
+        ]
 
     ratio_axes_idx = -1
     midratio_axes_idx = 0
